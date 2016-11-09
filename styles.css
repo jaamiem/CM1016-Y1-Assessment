@@ -7,14 +7,20 @@
 		#FDFDFD = off-white
 */
 
-body {
+/*
+Soz for weird indentation
+for clarification; There are no nested elements, it just looks that way
+-Jamie 09/11
+*/
+
+body { /*Set Font for doc*/
 	font: 300 14px/1.5em "helvetica", helvetica, sans-serif;
 	color: #555;
 }
-#header {
+#headerImg { /*RGU Logo*/
 	padding: 20 0 10px;
 }
-#nav {
+#nav { /*Nav div*/
 	font-weight: bold;
 	margin-bottom: 10px;
 	width: 100%;
@@ -42,14 +48,14 @@ nav ul li {
 		nav ul li:hover {
 			background: #b789ca;
 		}
-		nav ul li a {
+		nav ul li a { /*hover main nav links*/
 			display: block; 
 			padding: 10px 40px;
 			color: #fff;
 			text-decoration: none;
 		}
 
-nav ul ul {
+nav ul ul { /* Drop Down Menus */
 	display: none;
 	background: #b789ca;
 	font-weight: normal;
@@ -69,20 +75,20 @@ nav ul ul {
 					padding: 15px 20px;
 					color: #fff;
 				}
-						nav ul ul li a:hover {
+						nav ul ul li a:hover { /* Highlight current choice */
 							background: #ac77c2;
 							text-decoration: underline;
 							color: #FDFDFD;
 						}
-nav ul ul ul {
+nav ul ul ul { /* Drop downs from drop downs*/
 	position: absolute;
 	left: 100%;
 	top: 0%;
 }
 
-nav li+li {
+nav li+li { /* White separator border*/
 	border-left: 1px solid #fff;
 }
-	nav ul ul li {
+	nav ul ul li { /* Purple border to left of drop down elements*/
 		border-left: 2px solid #791d7e;
 	}
