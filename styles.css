@@ -7,16 +7,20 @@
 		#FDFDFD = off-white
 */
 
-body {
+/*
+Soz for weird indentation
+for clarification; There are no nested elements, it just looks that way
+-Jamie 09/11
+*/
+
+body { /*Set Font for doc*/
 	font: 300 14px/1.5em "helvetica", helvetica, sans-serif;
 	color: #555;
 }
-
-/*============================! HEADER !==========================*/
-#header {
+#headerImg { /*RGU Logo*/
 	padding: 20 0 10px;
 }
-#nav {
+#nav { /*Nav div*/
 	font-weight: bold;
 	margin-bottom: 10px;
 	width: 100%;
@@ -44,21 +48,21 @@ nav ul li {
 		nav ul li:hover {
 			background: #b789ca;
 		}
-		nav ul li a {
+		nav ul li a { /*hover main nav links*/
 			display: block; 
 			padding: 10px 40px;
 			color: #fff;
 			text-decoration: none;
 		}
 
-nav ul ul {
+nav ul ul { /* Drop Down Menus */
 	display: none;
 	background: #b789ca;
 	font-weight: normal;
 	padding: 0;
 	position: absolute;
 	top: 100%;
-	border-radius: 0;
+	border-radius: 0px;
 }
 		nav ul li:hover > ul {
 			display:block;
@@ -71,75 +75,20 @@ nav ul ul {
 					padding: 15px 20px;
 					color: #fff;
 				}
-						nav ul ul li a:hover {
+						nav ul ul li a:hover { /* Highlight current choice */
 							background: #ac77c2;
 							text-decoration: underline;
 							color: #FDFDFD;
 						}
-nav ul ul ul {
+nav ul ul ul { /* Drop downs from drop downs*/
 	position: absolute;
 	left: 100%;
-	top: 0;
+	top: 0%;
 }
 
-nav li+li {
+nav li+li { /* White separator border*/
 	border-left: 1px solid #fff;
 }
-	nav ul ul li {
+	nav ul ul li { /* Purple border to left of drop down elements*/
 		border-left: 2px solid #791d7e;
 	}
-	
-	
-/*============================! END OF HEADER !==========================*/
-
-/*===============================! FOOTER !==============================*/
-
-.footer {
-	height: 200px;
-	width: 100%;
-	margin: 10%;
-
-}
-
-.colLeft {
-	width: 33%;
-	float: left;
-	background: #791d7e;
-}
-
-.colRight {
-	width: 33%;
-	float: right;
-		background-color: #791d7e;
-}
-.colCentre {
-	display: inline-block;
-	width: 33%;
-	float: none;
-		background-color: #791d7e;
-}
-
-.footerFlex {
-	display: flex;
-	width: 100%;
-	background-color: #791d7e;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
