@@ -17,6 +17,9 @@ body { /*Set Font for doc*/
 	font: 300 14px/1.5em "helvetica", helvetica, sans-serif;
 	color: #555;
 }
+
+/*===============================! HEADER !==============================*/
+
 #headerImg { /*RGU Logo*/
 	padding: 20 0 10px;
 }
@@ -92,3 +95,38 @@ nav li+li { /* White separator border*/
 	nav ul ul li { /* Purple border to left of drop down elements*/
 		border-left: 2px solid #791d7e;
 	}
+
+/*============================! END OF HEADER !==========================*/
+
+/*===============================! FOOTER !==============================*/
+
+.footer {
+	height: 200px;
+	width: 100%;
+	margin: 10%;
+
+}
+
+.colLeft {
+	width: 33%;
+	float: left;
+	background: #791d7e;
+}
+
+.colRight {
+	width: 33%;
+	float: right;
+	background-color: #791d7e;
+}
+.colCentre {
+	display: inline-block;
+	width: 33%;
+	float: none;
+	background-color: #791d7e;
+}
+
+.footerFlex {
+	display: flex;
+	width: 100%;
+	background-color: #791d7e;
+}
