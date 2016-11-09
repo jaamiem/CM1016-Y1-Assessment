@@ -6,7 +6,7 @@
 	<title>RGU CSDM</title>
 </head>
 <body>
-	<img id="header" src="rgulogo.gif" alt="RGU Logo Header"></img>
+	<img id="headerImg" src="rgulogo.gif" alt="RGU Logo Header"></img>
 	<div id="nav">
 		<nav>
 			<ul>
