@@ -1,19 +1,18 @@
 /*colour scheme:
 		#b789ca = light purple
 		#ac77c2 = Highlight
-
 		#791d7e = main purple
-
 		#FDFDFD = off-white
 */
 
 /*
 Soz for weird indentation
 for clarification; There are no nested elements, it just looks that way
--Jamie 09/11
+-Jamie
 */
 
-body { /*Set Font for doc*/
+html, body { /*Set Font for doc*/
+	height: 100%;
 	font: 300 14px/1.5em "helvetica", helvetica, sans-serif;
 	color: #555;
 }
@@ -96,37 +95,93 @@ nav li+li { /* White separator border*/
 		border-left: 2px solid #791d7e;
 	}
 
-/*============================! END OF HEADER !==========================*/
+/*============================! END OF HEADER !=========================*/
 
-/*===============================! FOOTER !==============================*/
+/*==============================! MAIN FILE !===========================*/
 
-.footer {
-	height: 200px;
-	width: 100%;
-	margin: 10%;
-
+.wrapper {
+	width: 1280px;
+	margin: 0 auto;
+	min-height: 100%;
 }
 
-.colLeft {
-	width: 33%;
-	float: left;
+#content {
+	padding-top: 40px;
+	width: 90%;
+	margin: 0 auto;
+}
+
+hr {
+	width: 80%;
+}
+
+
+/*=============================! END OF MAIN !==========================*/
+
+/*================================! FOOTER !============================*/
+
+#footer {
+	height: 250px;
+	width: 100%;
+	margin-top: 40px;
+	position: relative;
+	bottom: 0;
+	left: 0;
 	background: #791d7e;
+	color: #FFF;
+	text-decoration: none;
+	list-style: none;
+	display: inline-table;
+	white-space: nowrap;
 }
+	.leftCluster {
+		float: left;
+		margin-left:10%;
+		width: 40%;
+	}
+		.leftCluster > h2 {
+			margin-bottom: 10px;
+			color: #FFF;
+			text-decoration: underline;
+		}
+		.colLeft {
+			width: 25%;
+			float: left;
+			color: #FDFDFD;
+		}
 
-.colRight {
-	width: 33%;
-	float: right;
-	background-color: #791d7e;
-}
-.colCentre {
-	display: inline-block;
-	width: 33%;
-	float: none;
-	background-color: #791d7e;
-}
+	.colCentre {
+		display: inline-block;
+		margin-left: 15%;
+		width: 30%;
+		float: none;
+	}
 
-.footerFlex {
-	display: flex;
-	width: 100%;
-	background-color: #791d7e;
-}
+	.colRight {
+		width: 33%;
+		padding-right: 10%;
+		margin-top: 10px;
+		float: right;
+	}
+		.colRight > h3 {
+			margin-bottom: 2px;
+			margin-top: 2px;
+			color: #FFF;
+		}
+
+	footer li a {
+		text-decoration: none;
+		color: #b789ca;
+		display: inline-block;
+	}
+		footer li a:hover {
+			color: #FDFDFD;
+		}
+		footer li a:before {
+			content: "• ";
+			clear: both;
+		}
+	footer li ul{
+		list-style: none;
+		margin: -2px 0px;
+	}
