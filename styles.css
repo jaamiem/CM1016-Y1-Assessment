@@ -120,6 +120,7 @@ nav li+li { /* White separator border*/
 .contentRight {
 	float: right;
 	width: 30%;
+	height: 500px; /* Change height if more added to sidebar!!!! */
 	margin: 2 5%;
 }
 
