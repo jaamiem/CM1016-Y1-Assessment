@@ -26,7 +26,7 @@
 			</div>
 			
 			<div class="contentRight">
-				<a class="twitter-timeline" data-width="300" data-dnt="true" href="https://twitter.com/RGUComputing">Tweets by RGUComputing</a> 
+				<a class="twitter-timeline" data-width="300" data-width="500" data-dnt="true" href="https://twitter.com/RGUComputing">Tweets by RGUComputing</a> 
 				<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 			</div>
 		</div>
