@@ -35,8 +35,5 @@
 			<?php include_once('footer.php'); ?>
 		</div>
 	</div>
-	<!-- test -->
-	<a class="twitter-timeline" data-width="300" data-dnt="true" href="https://twitter.com/RGUComputing">Tweets by RGUComputing</a> 
-				<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 </body>
 </html>
