@@ -16,7 +16,7 @@
 		
 		<div id="content">
 			<h2 style="padding-left:7.5%;"> HEADING TITLE </h2>
-			<hr>
+			<hr style="margin-top:4px;">
 			<div class="contentLeft">
 				Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer non ante nec quam sodales auctor nec sit amet quam. Curabitur hendrerit commodo dui, non ultricies lacus posuere malesuada. Pellentesque rutrum augue luctus fringilla pharetra. Fusce gravida ligula nec arcu vulputate imperdiet. Phasellus eget ex euismod, volutpat dui sit amet, feugiat arcu. Sed velit nunc, volutpat et metus sed, volutpat tincidunt purus. Aliquam molestie porta aliquam. Integer sagittis dignissim purus, ut pharetra enim euismod vel. Nulla aliquam tellus vitae ligula lobortis, ac vestibulum enim scelerisque. Quisque porta egestas vestibulum. Phasellus quis quam sem. Donec est sem, ornare et diam id, dapibus vehicula turpis. Interdum et malesuada fames ac ante ipsum primis in faucibus. In consequat dictum tortor condimentum bibendum.
 				In lorem mauris, suscipit sed mauris ac, maximus consequat nisi. Nulla malesuada nisl eu volutpat blandit. Praesent auctor lectus sed neque viverra, non commodo diam tincidunt. Cras aliquam tellus at urna dapibus, sed varius diam ullamcorper. Praesent ut scelerisque odio, non aliquet leo. Vestibulum velit diam, volutpat lobortis maximus nec, cursus in turpis. Ut accumsan hendrerit mauris, eget tempor est congue at. Mauris mollis nulla nisl, at ornare magna viverra nec. Sed elementum nunc malesuada convallis malesuada. Sed fringilla nibh ac auctor ullamcorper. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Suspendisse vestibulum quam eu purus tristique, at fermentum odio molestie. Phasellus commodo nisi sed nisi bibendum sollicitudin. Donec dapibus hendrerit iaculis. Curabitur vulputate sit amet purus ut convallis.
@@ -30,7 +30,7 @@
 				<a class="twitter-timeline" data-width="300" data-height="500" data-dnt="true" href="https://twitter.com/RGUComputing">Tweets by RGUComputing</a> 
 				<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 			</div>
-		<hr>
+		<hr style="margin-bottom:10px;">
 		</div>
 			
 		<div id="footer">
