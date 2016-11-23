@@ -53,7 +53,6 @@
 			</div>
 		</footer>
 		</div>
-		<a class="toTop" href="#header">^</a>
 		<p style="font-size: 0.6em;padding-left:5em;">@copyright 2016 Harambe inc. your soul now belongs to Donald Trump. We know where you live. </p> 
 	</body><!---REMOVE THIS TAG WHEN COMPILED TOGETHER -->
 
