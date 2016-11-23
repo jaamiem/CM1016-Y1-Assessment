@@ -30,7 +30,6 @@
 				<a class="twitter-timeline" data-width="300" data-height="500" data-dnt="true" href="https://twitter.com/RGUComputing">Tweets by RGUComputing</a> 
 				<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 			</div>
-		<hr style="margin:5 0 10px;">
 		</div>
 			
 		<div id="footer">
