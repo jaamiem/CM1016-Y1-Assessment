@@ -12,34 +12,34 @@
 			<div class="leftCluster">
 				<h2> School of Computing and Digital Media </h2>
 				<div class="colLeft">
-					<li><a href="#"><span>Home</span></a></li>
-					<li><a href="#"><span class="footLink">News</span></a></li>
-					<li><a href="#"><span class="footLink">Student Support</span></a>
+					<li><a href="#">Home</a></li>
+					<li><a href="#">News</a></li>
+					<li><a href="#">Student Support</a>
 						<ul>
-							<li><a href="#"><span class="footLink">Disability</span></a></li>
-							<li><a href="#"><span class="footLink">Wellbeing</span></a></li>
-							<li><a href="#"><span class="footLink">Study Support</span></a></li>
-							<li><a href="#"><span class="footLink">Careers</span></a></li>
+							<li><a href="#">Disability</a></li>
+							<li><a href="#">Wellbeing</a></li>
+							<li><a href="#">Study Support</a></li>
+							<li><a href="#">Careers</a></li>
 						</ul>
 					</li>
-					<li><a href="#"><span class="footLink">Contact Us</span></a></li>
+					<li><a href="#">Contact Us</a></li>
 				</div>	
 
 				<div class="colCentre">
-					<li><a href="#"><span class="footLink">Courses</span></a>
+					<li><a href="#">Courses</a>
 						<ul>
-							<li><a href="#"><span class="footLink">Undergraduate</span></a>
+							<li><a href="#">Undergraduate</a>
 								<ul>
-									<li><a href="#"><span class="footLink">COURSE1</span></a></li>
-									<li><a href="#"><span class="footLink">COURSE2</span></a></li>
-									<li><a href="#"><span class="footLink">COURSE3</span></a></li>
+									<li><a href="#">COURSE1</a></li>
+									<li><a href="#">COURSE2</a></li>
+									<li><a href="#">COURSE3</a></li>
 								</ul>
 							</li>
-							<li><a href="#"><span class="footLink">Postgraduate</a>
+							<li><a href="#">Postgraduate</a>
 								<ul>
-									<li><a href="#"><span class="footLink">COURSE1</span></a></li>
-									<li><a href="#"><span class="footLink">COURSE2</span></a></li>
-									<li><a href="#"><span class="footLink">COURSE3</span></a></li>
+									<li><a href="#">COURSE1</a></li>
+									<li><a href="#">COURSE2</a></li>
+									<li><a href="#">COURSE3</a></li>
 								</ul>
 							</li>
 						</ul>
@@ -53,6 +53,7 @@
 			</div>
 		</footer>
 		</div>
+		<a class="toTop" href="#header">^</a>
 		<p style="font-size: 0.6em;padding-left:5em;">@copyright 2016 Harambe inc. your soul now belongs to Donald Trump. We know where you live. </p> 
 	</body><!---REMOVE THIS TAG WHEN COMPILED TOGETHER -->
 
