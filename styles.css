@@ -113,32 +113,34 @@ nav li+li { /* White separator border*/
 
 .contentLeft {
 	float: left;
-	width: 60%;
+	width: 65%;
 	margin: 2 5%;
 }
 
 .contentRight {
 	float: right;
-	width: 30%;
+	width: 25%;
 	height: 500px; /* Change height if more added to sidebar!!!! */
 }
 	.contentRight li {
 		list-style: none;
-		display: block;
 		padding-bottom: 3px;
-		margin-top: 15px;
-		margin-left: -10%;
-		width:75%;
+		margin-top: 2%;
+		width:70%;
 	}
-	.contentRight li > a {
-		text-decoration: none;
-		padding-left: 10px;
-		color: 
-	}
-	.contentRight ul li {
-		border-bottom: 2px solid #D3D3D3;
-		border-left: 1px solid #D3D3D3;
-	}
+		.contentRight li > a {
+			text-decoration: none;
+			background: #fdf;
+			display: block;
+			padding: 5px 10px;
+			color: #791d7e;
+			border-bottom: 2px solid #791d7e;
+			border-left: 1px solid #791d7e;
+		}
+			.contentRight li > a:hover {
+				background: #ac77c2;
+				color: #FDF;
+			}
 
 hr {
 	width: 80%;
