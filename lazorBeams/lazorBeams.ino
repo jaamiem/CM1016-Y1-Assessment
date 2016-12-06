@@ -1,7 +1,14 @@
 /* Arduino Based Laser Turret
  * Sem-1-Y1 nov-2016
  * Team 14: George, Jamie, Jozi, Liam, Mathew, Teodor.
- * Current research: interrupts. */
+ * 
+ * Purpose: Turret has 3 different modes of controlling the turret; Strobe, VirtualJoystick, and Potentiometer 
+ *        Strobe - Fires Laser at random axis for random amount of shots
+ *        VJS - Control Servos via Processing 3. Laser Functionality to be added.
+ *        Potentiometer - control the servos with two potentiometers attached to the breadboard. Laser is perma-ON.
+ *        
+ *        modes are cycled via a button triggering interrupts.
+ */
 
 #include <Servo.h>
   //Import and define Servo library
@@ -20,10 +27,22 @@ const byte ledPins [ledCount] = {5,6,7,8}; //Pin numbers in array for said LEDs
 #define horizPin 9
 #define vertPin 10
 
+  //pins for Potentiometres
+#define potHorizPin 11
+#define potVertPin 12
+
   //variables for later use
-byte buttonLoop = 0;
-byte previousLoop;
+int buttonLoop = 0;
+byte previousLoop = 0;
 byte currProgram = 0;
+
+int buttonState = 0;
+
+int potHorizRead = 0;
+int potVertRead = 0;
+
+int potHoriz = 0;
+int potVert = 0;
 
   //var for virtual joystick
 int ypos=0;
@@ -38,27 +57,41 @@ void setup() {
   pinMode(lazorPin, OUTPUT); 
   pinMode(buzzerPin, OUTPUT);
     //attach LEDs
-  for(byte i=0; i<ledCount; i++){
+  for(int i=0; i<ledCount; i++){
     pinMode(ledPins[i], OUTPUT);
   }
-    //Prime Interrupt // assign to button // call pinISR() // MODE = CHANGE
+    //Prime Interrupt // assign to button pin // call pinISR() // MODE = CHANGE ** Activate when Pin CHANGEs value
   attachInterrupt(digitalPinToInterrupt(buttonPin),pinISR,CHANGE);
     
   Serial.begin(19200); //listen for "Processing 3" port 19200
   Serial.println("Booting...");//debug test
 }
 
-void pinISR(){
-  /* Blank mode and reset to default.
-   * Turn lazor LOW[OFF]
-   */
+void pin_ISR(){
+  reset();
+}
+
+void reset(){
   digitalWrite(lazorPin,LOW);
   srvHoriz.write(90);
   delay(500);
   srvVert.write(90);
   delay(500);
+  hitMeWithThoseLaserBeams();
   previousLoop = buttonLoop;
-  buttonLoop = 0;
+  if(buttonLoop >= 3){
+    buttonLoop = 0;
+  }
+  else {
+    buttonLoop++;
+  }
+  displayLED();
+  for(int i = 0; i < 3; i++){
+    digitalWrite(ledPins[buttonLoop], HIGH);
+    delay(1000);
+    digitalWrite(ledPins[buttonLoop], LOW);
+    delay(500);
+  }
 }
 
 void lazorStrobe(){
@@ -87,7 +120,7 @@ void lazorStrobe(){
   delay(100);
 
     //Begin shooting.
-  for(byte shot=0; shot<numShots; shot++){
+  for(int shot=0; shot<numShots; shot++){
     srvHoriz.write(horizStart); //Write to start pos.
     srvVert.write(vertStart);
     
@@ -104,20 +137,12 @@ void lazorStrobe(){
 void hitMeWithThoseLaserBeams(){
     /* Set Buzzer and Laser to HIGH[ON]
      * Wait for 0.02 seconds
-     * turn off again */
+     * set to LOW[OFF] */
   digitalWrite(lazorPin, HIGH);
   analogWrite(buzzerPin, 10);
   delay(20);
   digitalWrite(lazorPin, LOW);
   analogWrite(buzzerPin, 0);
-}
-
-void displayLED(){ 
-    /*LEDs used to highlight current mode.
-    * When new mode is selected, clear LED from last mode
-    * and activate LED relevant to new mode */
-  digitalWrite(ledPins[previousLoop],LOW);
-  digitalWrite(ledPins[buttonLoop],HIGH);
 }
 
 void virtualJoystick(){
@@ -144,6 +169,27 @@ void virtualJoystick(){
   }
 }
 
+void potentioControl(){
+  digitalWrite(lazorPin, HIGH);
+  
+  potHorizRead = analogRead(potHorizPin);
+  potVertRead = analogRead(potVertPin);
+
+  potHoriz = round(potHorizRead/6);
+  potVert = round(potVertRead/6);
+  
+  srvHoriz.write(potHorizRead);
+  srvVert.write(potVertRead);
+}
+
+void displayLED(){ 
+    /*LEDs used to highlight current mode.
+    * When new mode is selected, clear LED from last mode
+    * and activate LED relevant to new mode */
+  digitalWrite(ledPins[previousLoop],LOW);
+  digitalWrite(ledPins[buttonLoop],HIGH);
+}
+
 void loop(){
   switch (buttonLoop){
     case 0:
@@ -159,9 +205,10 @@ void loop(){
       break;
     case 3:
       displayLED();
+      potentioControl();
       break;
     default:
-      for(byte i=0; i<ledCount; i++){
+      for(int i=0; i<ledCount; i++){
         digitalWrite(ledPins[i],LOW);
       }
   }
