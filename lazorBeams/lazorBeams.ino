@@ -27,22 +27,15 @@ const byte ledPins [ledCount] = {5,6,7,8}; //Pin numbers in array for said LEDs
 #define horizPin 9
 #define vertPin 10
 
-  //pins for Potentiometres
-#define potHorizPin 11
-#define potVertPin 12
+#define potPin A0
 
-  //variables for later use
-int buttonLoop = 0;
-byte previousLoop = 0;
-byte currProgram = 0;
+int potVal = 0;
+int previousLoop = 0;
 
-int buttonState = 0;
-
-int potHorizRead = 0;
-int potVertRead = 0;
-
-int potHoriz = 0;
-int potVert = 0;
+const int maxReadings = 10;
+int potAvg[maxReadings];
+int arrIndex = 0;
+int total = 0;
 
   //var for virtual joystick
 int ypos=0;
@@ -53,45 +46,18 @@ void setup() {
   srvHoriz.attach(horizPin);
   srvVert.attach(vertPin);
     //attach everything else
-  pinMode(buttonPin, INPUT);
   pinMode(lazorPin, OUTPUT); 
   pinMode(buzzerPin, OUTPUT);
     //attach LEDs
   for(int i=0; i<ledCount; i++){
     pinMode(ledPins[i], OUTPUT);
   }
-    //Prime Interrupt // assign to button pin // call pinISR() // MODE = CHANGE ** Activate when Pin CHANGEs value
-  attachInterrupt(digitalPinToInterrupt(buttonPin),pinISR,CHANGE);
-    
+  for (int j=0; j<maxReadings; j++){
+    potAvg[j] = 0;
+  }
+  
   Serial.begin(19200); //listen for "Processing 3" port 19200
   Serial.println("Booting...");//debug test
-}
-
-void pin_ISR(){
-  reset();
-}
-
-void reset(){
-  digitalWrite(lazorPin,LOW);
-  srvHoriz.write(90);
-  delay(500);
-  srvVert.write(90);
-  delay(500);
-  hitMeWithThoseLaserBeams();
-  previousLoop = buttonLoop;
-  if(buttonLoop >= 3){
-    buttonLoop = 0;
-  }
-  else {
-    buttonLoop++;
-  }
-  displayLED();
-  for(int i = 0; i < 3; i++){
-    digitalWrite(ledPins[buttonLoop], HIGH);
-    delay(1000);
-    digitalWrite(ledPins[buttonLoop], LOW);
-    delay(500);
-  }
 }
 
 void lazorStrobe(){
@@ -169,29 +135,27 @@ void virtualJoystick(){
   }
 }
 
-void potentioControl(){
-  digitalWrite(lazorPin, HIGH);
-  
-  potHorizRead = analogRead(potHorizPin);
-  potVertRead = analogRead(potVertPin);
-
-  potHoriz = round(potHorizRead/6);
-  potVert = round(potVertRead/6);
-  
-  srvHoriz.write(potHorizRead);
-  srvVert.write(potVertRead);
-}
-
 void displayLED(){ 
     /*LEDs used to highlight current mode.
     * When new mode is selected, clear LED from last mode
     * and activate LED relevant to new mode */
   digitalWrite(ledPins[previousLoop],LOW);
-  digitalWrite(ledPins[buttonLoop],HIGH);
+  digitalWrite(ledPins[potVal],HIGH);
+  previousLoop = potVal;
 }
 
 void loop(){
-  switch (buttonLoop){
+  total -= potAvg[arrIndex];
+  potAvg[arrIndex] = analogRead(potPin);
+  total += potAvg[arrIndex];
+  arrIndex++;
+  if (arrIndex >= maxReadings){
+    arrIndex = 0;
+  }
+  potVal = (total/maxReadings);
+  potVal /= 341;
+  
+  switch (potVal){
     case 0:
       displayLED();
       break;
@@ -205,7 +169,6 @@ void loop(){
       break;
     case 3:
       displayLED();
-      potentioControl();
       break;
     default:
       for(int i=0; i<ledCount; i++){
@@ -213,23 +176,6 @@ void loop(){
       }
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
