@@ -16,7 +16,6 @@ Servo srvHoriz;
 Servo srvVert;
 
   //Define Constants for pin numbers
-#define buttonPin 2
 #define lazorPin 3
 #define buzzerPin 4
 
