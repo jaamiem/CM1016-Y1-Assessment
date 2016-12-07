@@ -148,6 +148,31 @@ hr {
 
 /*=============================! END OF MAIN !==========================*/
 
+/*================================! COURSES !============================*/
+button.accordion{
+	background: #ac77c2;
+	color: #FDFDFD;
+	cursor: pointer;
+	padding: 18px;
+	width: 90%;
+	text-align: left;
+	border: none;
+	outline: none;
+	transition: 0.2s;
+}
+button.accordion.active, button.accordion:hover {
+    background-color: #b789ca;
+}
+div.panel {
+    padding: 0 18px;
+    background-color: #FDF;
+    display: none;
+}
+div.panel.show {
+    display: block;
+}
+/*=============================! END OF COURSES !==========================*/
+
 /*================================! FOOTER !============================*/
 
 #footer {
