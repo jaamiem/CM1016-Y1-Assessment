@@ -173,6 +173,47 @@ div.panel.show {
 }
 /*=============================! END OF COURSES !==========================*/
 
+/*=============================! CONTACT US !==========================*/
+
+.centerpanel { /* something is terribly wrong here */
+font-size: 10px;
+width:65%;
+text-align: center;
+}
+.leftpanel {
+
+display:inline-block;
+padding: 10px;
+width: 230px;
+height:140px;
+vertical-align:top;
+border: 2px solid black;
+margin-top: 5%;
+margin-left: 10%;
+line-height: 10px;
+}
+.rightpanel {
+
+display:inline-block;
+padding: 10px;
+width: 230px;
+height:140px;
+vertical-align:top;
+border: 2px solid black;
+margin-top: 5%;
+margin-left: 5%;
+line-height: 16px;
+}
+.contactmap {
+width: 33%;
+padding-right: 10%;
+margin-top: 10px;
+float: right;
+}
+
+
+/*=============================! END OF CONTACT US !==========================*/
+
 /*================================! FOOTER !============================*/
 
 #footer {
