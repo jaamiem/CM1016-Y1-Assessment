@@ -17,7 +17,7 @@ Servo srvVert;
 
   //Define Constants for pin numbers
 #define lazorPin 3
-#define buzzerPin 4
+#define buzzerPin 13
 
 #define ledCount 4 //Number of LEDs used to represent active programs
 const byte ledPins [ledCount] = {5,6,7,8}; //Pin numbers in array for said LEDs
@@ -31,10 +31,11 @@ const byte ledPins [ledCount] = {5,6,7,8}; //Pin numbers in array for said LEDs
 int potVal = 0;
 int previousLoop = 0;
 
-const int maxReadings = 10;
+const int maxReadings = 5;
 int potAvg[maxReadings];
 int arrIndex = 0;
 int total = 0;
+boolean potOverride = false;
 
   //var for virtual joystick
 int ypos=0;
@@ -69,11 +70,11 @@ void lazorStrobe(){
     //Servos.
   int horizStart = random(1,180); 
   int horizEnd = random(1,180);
-  int vertStart = random(40,150);
-  int vertEnd = random(40,150);
+  int vertStart = random(10,150);
+  int vertEnd = random(10,150);
     //Fire commands.
-  int timeBetweenBursts = random(200,2000);
-  int timeBetweenShots = random(50,200);
+  int timeBetweenBursts = random(150,1000);
+  int timeBetweenShots = random(20,100);
   int numShots = random(2,20);
 
     //Calculate calculate degrees of movement between each shot.
@@ -103,11 +104,11 @@ void hitMeWithThoseLaserBeams(){
     /* Set Buzzer and Laser to HIGH[ON]
      * Wait for 0.02 seconds
      * set to LOW[OFF] */
-  digitalWrite(lazorPin, HIGH);
-  analogWrite(buzzerPin, 10);
-  delay(20);
   digitalWrite(lazorPin, LOW);
-  analogWrite(buzzerPin, 0);
+  tone(buzzerPin, 10);
+  delay(3`0);
+  digitalWrite(lazorPin, HIGH);
+  noTone(buzzerPin);
 }
 
 void virtualJoystick(){
@@ -146,13 +147,22 @@ void displayLED(){
 void loop(){
   total -= potAvg[arrIndex];
   potAvg[arrIndex] = analogRead(potPin);
+  if (potAvg[arrIndex] > (102+potAvg[arrIndex-1]) || potAvg[arrIndex] < (102-potAvg[arrIndex-1])){
+    potOverride = true;
+  }
   total += potAvg[arrIndex];
   arrIndex++;
-  if (arrIndex >= maxReadings){
+  if (arrIndex > maxReadings){
     arrIndex = 0;
   }
-  potVal = (total/maxReadings);
-  potVal /= 341;
+  if (potOverride == true){
+    potVal = potAvg[arrIndex];
+    potOverride = false;
+  }
+  else {
+    potVal = (total/maxReadings);
+  }
+  potVal /= 341; 
   
   switch (potVal){
     case 0:
