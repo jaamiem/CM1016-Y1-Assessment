@@ -17,7 +17,7 @@ Servo srvVert;
 
   //Define Constants for pin numbers
 #define lazorPin 3
-#define buzzerPin 13
+#define buzzerPin 4
 
 #define ledCount 3 //Number of LEDs used to represent active programs
 const byte ledPins [ledCount] = {5,6,7}; //Pin numbers in array for said LEDs
@@ -30,12 +30,6 @@ const byte ledPins [ledCount] = {5,6,7}; //Pin numbers in array for said LEDs
 
 int potVal = 0; //
 int previousLoop = 0;
-
-const int maxReadings = 10;
-int potAvg[maxReadings];
-int arrIndex = 0;
-int total = 0;
-boolean potOverride = false;
 
   //var for virtual joystick
 int ypos=0;
@@ -52,12 +46,8 @@ void setup() {
   for(int i=0; i<ledCount; i++){
     pinMode(ledPins[i], OUTPUT);
   }
-  for (int j=0; j<maxReadings; j++){
-    potAvg[j] = 0;
-  }
   
   Serial.begin(19200); //listen for "Processing 3" port 19200
-  Serial.println("Booting...");//debug test
 }
 
 void lazorStrobe(){
@@ -105,7 +95,7 @@ void hitMeWithThoseLaserBeams(){
      * Wait for 0.02 seconds
      * set to LOW[OFF] */
   digitalWrite(lazorPin, LOW);
-  tone(buzzerPin, 10);
+  tone(buzzerPin, 500);
   delay(30);
   digitalWrite(lazorPin, HIGH);
   noTone(buzzerPin);
@@ -116,12 +106,13 @@ void virtualJoystick(){
    * with a mouse acting as a virtual joystick.
    * Processing sends variable int "xpos" which holds a degree point
    * with either "x" or "y" at the end to signify which axis is controlled. */
+  digitalWrite(lazorPin, HIGH);
   static int degs = 0; //degrees calc var //d'ya like degs?
-  if(Serial.available()){
-    char ch = Serial.read();
-    switch(ch){
+  while(Serial.available() > 0){
+    char input = Serial.read();
+    switch(input){
       case '0'...'9':
-        degs=degs*10+ch-'0'; //Degs? 
+        degs=degs*10+input-'0'; //Degs? 
         break;
       case 'x':
         srvHoriz.write(degs); //Yeah, Degs. //Oh. Dogs..?
@@ -129,6 +120,11 @@ void virtualJoystick(){
         break;
       case 'y':
         srvVert.write(degs); //yeah... I like DOGS.
+        degs=0;
+        break;
+      case 'a':
+        hitMeWithThoseLaserBeams();
+        delay(50);
         degs=0;
         break;
     }
@@ -139,54 +135,38 @@ void displayLED(){
     /*LEDs used to highlight current mode.
     * When new mode is selected, clear LED from last mode
     * and activate LED relevant to new mode */
-  if (potVal != previousLoop){
     digitalWrite(ledPins[previousLoop],LOW);
     digitalWrite(ledPins[potVal],HIGH);
     previousLoop = potVal;
-  }
 }
 
 void loop(){
-  total -= potAvg[arrIndex];
-  potAvg[arrIndex] = analogRead(potPin); 
-  if (potAvg[arrIndex] > (204+potAvg[arrIndex-1]) || potAvg[arrIndex] < (204-potAvg[arrIndex-1])){
-    potOverride = true;
-  }
-  total += potAvg[arrIndex];
-  arrIndex++;
-  if (arrIndex > maxReadings){
-    arrIndex = 0;
-  }
-  if (potOverride == true){
-    potVal = potAvg[arrIndex];
-    potOverride = false;
-    for (int j=0; j<maxReadings; j++){
-      potAvg[j] = 0;
-    }
-  }
-  else {
-    potVal = (total/maxReadings);
-  }
- 
-  potVal /= (int) 341;
+  potVal = analogRead(potPin);
+  potVal /= (int) 255.75;
   
   switch (potVal){
-    case 1:
     case 0:
       displayLED();
       break;
-    case 2:
+    case 1:
       displayLED();
       lazorStrobe();
       break;
+    case 2:
     case 3:
       displayLED();
       virtualJoystick();
       break;
     default:
       for(int i=0; i<ledCount; i++){
+        digitalWrite(ledPins[i],HIGH);
+      }
+      delay(500);
+      for(int i=0; i<ledCount; i++){
         digitalWrite(ledPins[i],LOW);
       }
+      delay(500);
+      break;
   }
 }
 
