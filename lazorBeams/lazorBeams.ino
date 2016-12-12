@@ -19,19 +19,19 @@ Servo srvVert;
 #define lazorPin 3
 #define buzzerPin 13
 
-#define ledCount 4 //Number of LEDs used to represent active programs
-const byte ledPins [ledCount] = {5,6,7,8}; //Pin numbers in array for said LEDs
+#define ledCount 3 //Number of LEDs used to represent active programs
+const byte ledPins [ledCount] = {5,6,7}; //Pin numbers in array for said LEDs
 
   //Pins for servos
 #define horizPin 9
 #define vertPin 10
 
-#define potPin A0
+#define potPin A0 //Potentiometer Pin
 
-int potVal = 0;
+int potVal = 0; //
 int previousLoop = 0;
 
-const int maxReadings = 5;
+const int maxReadings = 10;
 int potAvg[maxReadings];
 int arrIndex = 0;
 int total = 0;
@@ -106,7 +106,7 @@ void hitMeWithThoseLaserBeams(){
      * set to LOW[OFF] */
   digitalWrite(lazorPin, LOW);
   tone(buzzerPin, 10);
-  delay(3`0);
+  delay(30);
   digitalWrite(lazorPin, HIGH);
   noTone(buzzerPin);
 }
@@ -139,15 +139,17 @@ void displayLED(){
     /*LEDs used to highlight current mode.
     * When new mode is selected, clear LED from last mode
     * and activate LED relevant to new mode */
-  digitalWrite(ledPins[previousLoop],LOW);
-  digitalWrite(ledPins[potVal],HIGH);
-  previousLoop = potVal;
+  if (potVal != previousLoop){
+    digitalWrite(ledPins[previousLoop],LOW);
+    digitalWrite(ledPins[potVal],HIGH);
+    previousLoop = potVal;
+  }
 }
 
 void loop(){
   total -= potAvg[arrIndex];
-  potAvg[arrIndex] = analogRead(potPin);
-  if (potAvg[arrIndex] > (102+potAvg[arrIndex-1]) || potAvg[arrIndex] < (102-potAvg[arrIndex-1])){
+  potAvg[arrIndex] = analogRead(potPin); 
+  if (potAvg[arrIndex] > (204+potAvg[arrIndex-1]) || potAvg[arrIndex] < (204-potAvg[arrIndex-1])){
     potOverride = true;
   }
   total += potAvg[arrIndex];
@@ -158,26 +160,28 @@ void loop(){
   if (potOverride == true){
     potVal = potAvg[arrIndex];
     potOverride = false;
+    for (int j=0; j<maxReadings; j++){
+      potAvg[j] = 0;
+    }
   }
   else {
     potVal = (total/maxReadings);
   }
-  potVal /= 341; 
+ 
+  potVal /= (int) 341;
   
   switch (potVal){
+    case 1:
     case 0:
       displayLED();
       break;
-    case 1:
+    case 2:
       displayLED();
       lazorStrobe();
       break;
-    case 2:
-      displayLED();
-      virtualJoystick();
-      break;
     case 3:
       displayLED();
+      virtualJoystick();
       break;
     default:
       for(int i=0; i<ledCount; i++){
