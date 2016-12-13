@@ -1,0 +1,187 @@
+/*@import "badcolors.css";*/
+
+@import "fonts.css";
+
+
+body{
+    font-family:"PT Sans","Helvetica Neue",Helvetica,Arial,sans-serif;
+    no-repeat: top right;
+}
+
+
+
+.navbar-primary .navbar-toggle{
+    background-image: url(newpurple.jpg);
+    min-height: 43px;
+    margin-top: 20px;
+    border-bottom-width: 4px;
+    position: relative;
+    z-index: 1000;
+    border: none;
+    border-radius: 0;
+    float : none;
+    margin :0;
+    text-align : right ;
+    text-transform : uppercase;
+
+}
+
+
+.header-col{
+    background-image: url("newpurple.jpg");
+}
+
+
+.collapse{
+    background-image: url(newpurple.jpg);
+    width: 100%;
+}
+
+
+
+
+
+
+.navbar-default{
+    font-size: 20px;
+    background-color : white;
+    border-color: #e0ded9;
+    color: #43a901;
+
+
+}
+
+.navabar {
+
+    position: relative;
+    margin-bottom: 22px;
+    border: 1px solid transparent;
+}
+
+
+.content-width {
+
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+
+.container-fluid{
+
+    margin-right: -15px;
+    margin-left: -15px;
+
+}
+
+.navbar-toggle{
+    position: relative;
+    background: transparent;
+}
+
+
+
+
+
+
+
+
+.content-width {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 1200px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+* {
+    box-sizing : border-box;
+}
+
+
+
+
+
+
+.sr-only, .screen-reader-shortcut {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+}
+* {
+    box-sizing: border-box;
+}
+
+
+header{
+    padding:30px 15px 30px 15px;
+}
+
+
+main article img {
+    width : 100%;
+}
+
+/* Start of Header */
+
+
+
+
+header h1{
+    font-weight: 700;
+    font-family: 'Righteous', cursive;
+    margin-bottom: 0;
+}
+
+header h2{
+    margin-top: 0;
+}
+/*End of Header*/
+
+
+
+
+/*Home Page - Experiment Styles*/
+#experimentImage{
+    margin: 6px 0 3px 0;
+    width: 100%;
+
+
+}
+/*End of Home Page - Experiment Styles*/
+
+/*Start of Footer*/
+
+
+
+footer section h3{
+    margin-top: 10px;
+}
+/*End of Footer*/
+
+.colRight {
+    width: 33%;
+    padding-right: 10%;
+    margin-top: 10px;
+    float: right;
+}
+
+footer {
+    height: 10px;
+    width: 100%;
+    margin-top: 20px;
+    position: static;
+    bottom: 0;
+    left: 0;
+    background: url("newpurple.jpg");
+    color: #f3fbff;
+    text-decoration: none;
+    list-style: none;
+    display: inline-table;
+    white-space: nowrap;
+}
