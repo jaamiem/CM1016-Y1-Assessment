@@ -1,3 +1,8 @@
+/* Put this code into the CSS
+.panel-body{
+	line-height: 0.8;
+}
+*/
 <!DOCTYPE html>
 
 <html lang="en">
